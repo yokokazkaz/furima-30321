@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options                                                                     |
-| --------------- | ------ | --------------------------------------------------------------------------- |
-| name            | string | null: false                                                                 |
-| email           | string | null: false, unique: true                                                   |
-| password        | string | null: false, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX } |
-| last_name       | string | null: false                                                                 |
-| first_name      | string | null: false                                                                 |
-| ruby_last_name  | string | null: false                                                                 |
-| ruby_first_name | string | null: false                                                                 |
-| birth_date      | date   | null: false                                                                 |
+| Column          | Type   | Options                   |
+| --------------- | ------ | ------------------------- |
+| name            | string | null: false               |
+| email           | string | null: false, unique: true |
+| password        | string | null: false               |
+| last_name       | string | null: false               |
+| first_name      | string | null: false               |
+| ruby_last_name  | string | null: false               |
+| ruby_first_name | string | null: false               |
+| birth_date      | date   | null: false               |
 
 
 ### Association
