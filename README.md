@@ -17,13 +17,12 @@
 ### Association
 
 - has_many :items
-- has_one  :buyer
+- has_many :buyers
 
 ## items テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| image            | string     | null: false                    |
 | name             | string     | null: false                    |
 | detail           | text       | null: false                    |
 | category_id      | integer    | null: false                    |
@@ -32,13 +31,13 @@
 | shipping_area_id | integer    | null: false                    |
 | shipping_days_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
-| buyer_id         | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
+
 
 ### Association
 
 - belongs_to :user
-- belongs_to :buyer
+- has_one    :buyer
 - belongs_to_active_hash :category_id
 - belongs_to_active_hash :condition_id
 - belongs_to_active_hash :shipping_area_id
@@ -47,27 +46,27 @@
 
 ## buyer テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| card_id   | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many   :items
+- belongs_to :item
 - has_one    :ship_address
 
 ## ship_address テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| postal_code    | integer    | null: false                    |
-| prefectures_id | integer    | null: false                    |
+| postal_code    | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
 | address_detail | string     | null: false                    |
 | apartment_name | string     |                                |
 | phone_number   | string     | null: false                    |
-| buyer_id       | references | null: false, foreign_key: true |
+| buyer          | references | null: false, foreign_key: true |
 
 ### Association
 
