@@ -26,11 +26,11 @@
 | image            | string     | null: false                    |
 | name             | string     | null: false                    |
 | detail           | text       | null: false                    |
-| category         | string     | null: false                    |
-| condition        | string     | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
 | delivery_fee     | integer    | null: false                    |
-| shipping_area    | string     | null: false                    |
-| shipping_days    | integer    | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| shipping_days_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user_id          | references | null: false, foreign_key: true |
 | buyer_id         | references | null: false, foreign_key: true |
@@ -39,6 +39,10 @@
 
 - belongs_to :user
 - belongs_to :buyer
+- belongs_to_active_hash :category_id
+- belongs_to_active_hash :condition_id
+- belongs_to_active_hash :shipping_area_id
+- belongs_to_active_hash :shipping_days_id
 
 
 ## buyer テーブル
@@ -59,7 +63,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postal_code    | integer    | null: false                    |
-| prefectures    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
 | address_detail | string     | null: false                    |
 | apartment_name | string     |                                |
 | phone_number   | string     | null: false                    |
@@ -67,4 +71,5 @@
 
 ### Association
 
-- belongs_to :buyer  
+- belongs_to :buyer
+- belongs_to_active_hash :prefectures_id
