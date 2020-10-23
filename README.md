@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options                   |
-| --------------- | ------ | ------------------------- |
-| name            | string | null: false               |
-| email           | string | null: false, unique: true |
-| password        | string | null: false               |
-| last_name       | string | null: false               |
-| first_name      | string | null: false               |
-| ruby_last_name  | string | null: false               |
-| ruby_first_name | string | null: false               |
-| birth_date      | date   | null: false               |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| name               | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| ruby_last_name     | string | null: false               |
+| ruby_first_name    | string | null: false               |
+| birth_date         | date   | null: false               |
 
 
 ### Association
@@ -40,6 +40,7 @@
 - has_one    :buyer
 - belongs_to_active_hash :category_id
 - belongs_to_active_hash :condition_id
+- belongs_to_active_hash :delivery_fee_id
 - belongs_to_active_hash :shipping_area_id
 - belongs_to_active_hash :shipping_days_id
 
@@ -63,7 +64,8 @@
 | -------------- | ---------- | ------------------------------ |
 | postal_code    | string     | null: false                    |
 | prefecture_id  | integer    | null: false                    |
-| address_detail | string     | null: false                    |
+| city           | string     | null: false                    |
+| address        | string     | null: false                    |
 | apartment_name | string     |                                |
 | phone_number   | string     | null: false                    |
 | buyer          | references | null: false, foreign_key: true |
