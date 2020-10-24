@@ -9,8 +9,8 @@
 | encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
-| ruby_last_name     | string | null: false               |
-| ruby_first_name    | string | null: false               |
+| read_last_name     | string | null: false               |
+| read_first_name    | string | null: false               |
 | birth_date         | date   | null: false               |
 
 
