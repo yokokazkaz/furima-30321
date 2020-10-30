@@ -121,54 +121,86 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    it "last_nameが半角文字が含まれる場合登録できないこと" do
+    it "last_nameに半角文字が含まれる場合登録できないこと" do
       @user.last_name = "田中a1"
       @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
     end
 
-    # it "last_nameに数字が含まれる場合登録できないこと" do
-    #   @user.last_name = "田中1"
-    #   @user.valid?
-    #   expect(@user.errors.full_messages).to include("Last name is invalid")
-    # end
+    it "last_nameに数字が含まれる場合登録できないこと" do
+      @user.last_name = "田中１"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
+    end
 
     it "first_nameが全角であれば登録できること" do
       @user.first_name = "太郎"
       expect(@user).to be_valid
     end
 
-    it "first_nameが半角であれば登録できないこと" do
-      @user.first_name = "taro"
+    it "first_nameに半角文字が含まれる場合登録できないこと" do
+      @user.first_name = "太郎b2"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    end
+
+    it "first_nameに数字が含まれる場合登録できないこと" do
+      @user.first_name = "太郎２"
       @user.valid?
       expect(@user.errors.full_messages).to include("First name is invalid")
     end
 
     it "read_last_nameが全角カタカナであれば登録できること" do
+      @user.read_last_name = "タナカ"
+      expect(@user).to be_valid
     end
 
-    it "read_last_nameが半角であれば登録できないこと" do
+    it "read_last_nameに半角文字が含まれる場合登録できないこと" do
+      @user.read_last_name = "タナカa1"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Read last name is invalid")
     end
 
     it "read_last_nameが全角漢字であれば登録できないこと" do
+      @user.read_last_name = "田中"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Read last name is invalid")
     end
 
     it "read_last_nameが全角ひらがなであれば登録できないこと" do
+      @user.read_last_name = "たなか"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Read last name is invalid")
     end
 
     it "read_first_nameが全角カタカナであれば登録できること" do
+      @user.read_first_name = "タロウ"
+      expect(@user).to be_valid
     end
 
-    it "read_first_nameが半角であれば登録できないこと" do
+    it "read_first_nameに半角文字が含まれる場合登録できないこと" do
+      @user.read_first_name = "タロウa1"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Read first name is invalid")
     end
 
     it "read_first_nameが全角漢字であれば登録できないこと" do
+      @user.read_first_name = "太郎"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Read first name is invalid")
     end
 
     it "read_first_nameが全角ひらがなであれば登録できないこと" do
+      @user.read_first_name = "たろう"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Read first name is invalid")
     end
 
     it "重複したemailが存在する場合登録できないこと" do
+      @user.save
+      another_user = FactoryBot.build(:user, email: @user.email)
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
-    
   end
 end
