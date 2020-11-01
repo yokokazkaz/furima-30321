@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one    :buyer
-  belongs_to_active_hash :category_id
-  belongs_to_active_hash :condition_id
-  belongs_to_active_hash :delivery_fee_id
-  belongs_to_active_hash :shipping_area_id
-  belongs_to_active_hash :shipping_days_id
+  belongs_to_active_hash :category
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :shipping_area
+  belongs_to_active_hash :shipping_days
   has_one_attached :image
 
   with_options presence: true do
