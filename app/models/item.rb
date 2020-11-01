@@ -17,7 +17,8 @@ class Item < ApplicationRecord
     validates :delivery_fee_id,  numericality: { other_than: 1 } 
     validates :shipping_area_id, numericality: { other_than: 1 } 
     validates :shipping_days_id, numericality: { other_than: 1 } 
-    validates :price #半角数字限定、¥300~¥9,999,999の間制限
+    validates :price, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, allow_blank: true } 
+    #半角数字限定、¥300~¥9,999,999の間制限
     validates :image
   end
 end
