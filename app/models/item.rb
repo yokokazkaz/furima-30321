@@ -12,13 +12,14 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :detail
-    validates :category_id,      numericality: { other_than: 1 } 
+    validates :category_id,      numericality: { other_than: 1 }
     validates :condition_id,     numericality: { other_than: 1 } 
     validates :delivery_fee_id,  numericality: { other_than: 1 } 
     validates :shipping_area_id, numericality: { other_than: 1 } 
-    validates :shipping_days_id, numericality: { other_than: 1 } 
-    validates :price, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, allow_blank: true } 
-    #半角数字限定、¥300~¥9,999,999の間制限
+    validates :shipping_day_id,  numericality: { other_than: 1 } 
+    validates :price, numericality: { only_integer: true, message: "Half-width number"} 
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Out of setting range"}
+     
     validates :image
   end
 end
