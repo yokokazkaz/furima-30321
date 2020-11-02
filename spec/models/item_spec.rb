@@ -34,6 +34,36 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Detail can't be blank")
         end
 
+        it "category_idが空の場合商品を出品できない" do
+          @item.category_id = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Category can't be blank", "Category is not a number")
+        end
+
+        it "condition_idが空の場合商品を出品できない" do
+          @item.condition_id = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Condition can't be blank", "Condition is not a number")
+        end
+
+        it "delivery_fee_idが空の場合商品を出品できない" do
+          @item.delivery_fee_id = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Delivery fee can't be blank", "Delivery fee is not a number")
+        end
+
+        it "shipping_area_idが空の場合商品を出品できない" do
+          @item.shipping_area_id = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping area can't be blank", "Shipping area is not a number")
+        end
+
+        it "shipping_day_idが空の場合商品を出品できない" do
+          @item.shipping_day_id = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping day can't be blank", "Shipping day is not a number")
+        end
+
         it "category_idが1の場合商品を出品できない" do
           @item.category_id = 1
           @item.valid?
