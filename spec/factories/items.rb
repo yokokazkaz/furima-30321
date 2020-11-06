@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    
     name              { 'シャネルのサッカーボール' }
     detail            { '正規品のボール1ダースです。' }
     category_id       { 2 }

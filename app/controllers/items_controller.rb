@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
-
   def index
-    @items = Item.all.order("created_at DESC").includes(:user) 
+    @items = Item.all.order('created_at DESC').includes(:user)
   end
 
   def new
