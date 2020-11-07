@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :buyers
+- has_many :orders
 
 ## items テーブル
 
@@ -29,7 +29,7 @@
 | condition_id     | integer    | null: false                    |
 | delivery_fee_id  | integer    | null: false                    |
 | shipping_area_id | integer    | null: false                    |
-| shipping_days_id | integer    | null: false                    |
+| shipping_day_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
@@ -37,7 +37,7 @@
 ### Association
 
 - belongs_to :user
-- has_one    :buyer
+- has_one    :order
 - belongs_to_active_hash :category_id
 - belongs_to_active_hash :condition_id
 - belongs_to_active_hash :delivery_fee_id
@@ -45,7 +45,7 @@
 - belongs_to_active_hash :shipping_days_id
 
 
-## buyer テーブル
+## order テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -56,9 +56,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :ship_address
+- has_one    :address
 
-## ship_address テーブル
+## address テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
@@ -72,5 +72,5 @@
 
 ### Association
 
-- belongs_to :buyer
+- belongs_to :order
 - belongs_to_active_hash :prefectures_id
