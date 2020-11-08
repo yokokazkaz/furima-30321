@@ -73,4 +73,4 @@
 ### Association
 
 - belongs_to :order
-- belongs_to_active_hash :prefectures_id
+- belongs_to_active_hash :prefecture_id
