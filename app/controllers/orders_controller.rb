@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :move_to_index
+
   def index
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
@@ -6,7 +8,6 @@ class OrdersController < ApplicationController
 
 
   def create
-    binding.pry
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
@@ -33,4 +34,9 @@ class OrdersController < ApplicationController
       )
   end
 
+  def move_to_index
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end
