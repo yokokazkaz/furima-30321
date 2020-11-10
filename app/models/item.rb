@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
-  has_one    :buyer
+  has_one    :order
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :delivery_fee
@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :price, numericality: { only_integer: true, message: 'Half-width number' }
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
     validates :image
-    
+
     with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :condition_id
